@@ -35,3 +35,11 @@ INSERT INTO t_tag_tag (tag_numero, tag_label, tag_contenu, tag_image, tag_etat, 
 INSERT INTO t_actualite_act (act_numero, act_titre, act_text, act_date_aj, act_etat, usr_pseudo) VALUES
 (1, "Games of thrones disponible en Avril 2019", "HBO a juste publié le teaser de la derniere saison de Game Of thrones, la série reviendra en Avril 2019", CURRENT_DATE(), "A", "jean"),
 (2, "X-Men Dark Phoenix", "La série X-Men Dark Phoenix a officiellement été annoncée pour Juin 2019 et sera disponible dans notre cinéma dès sa sortie", CURRENT_DATE(), "A", "imhassane");
+
+INSERT INTO t_hyperlien_hln (hln_numero, hln_nom, hln_url) VALUES
+    (1, "Acces cinéma liberté", "http://www.multiplexeliberte.fr/accessibilite/"),
+    (2, 'Genres de film', 'https://fr.wikipedia.org/wiki/Genre_cinématographique'),
+    (3, 'Sorties de film 2018', 'https://www.cinetrafic.fr/film-2018/3');
+
+INSERT INTO tj_tag_lien (tag_numero, hln_numero) VALUES
+    (2, 1), (3, 2), (1, 3); 

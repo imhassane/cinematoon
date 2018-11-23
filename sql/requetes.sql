@@ -64,10 +64,12 @@ SELECT *
 FROM t_tag_tag
 WHERE tag_label = '';
 
--- 12
+-- 12 (PL/SQL)
+SELECT @numero := MAX(act_numero) FROM t_actualite_act;
+
 INSERT INTO t_actualite_act(act_numero, act_titre, act_text, act_date_aj, act_etat, usr_pseudo)
 VALUES (
-    (SELECT MAX(act_numero) + 1 FROM t_actualite_act),
+    @numero + 1,
     "La saison 3 de The Last Kingdom disponible",
     "Dépuis ce Lundi 19 Novembre 2018, la sasion 3 de la série The Last kingdom est disponible dans notre cinéma.
     Vous pourrez la voir en 3D et en version originale. Elle est également disponible sur Netflix.", now(), "V", "rimk"
@@ -131,6 +133,14 @@ SET
 WHERE sjt_numero = 1;
 
 -- 22
+DELETE FROM tj_tag_lien
+WHERE tag_numero IN (
+    SELECT tag_numero FROM t_tag_tag WHERE sjt_numero = 3
+);
+
+DELETE FROM t_tag_tag
+WHERE sjt_numero = 3;
+
 DELETE
 FROM t_sujet_sjt
 WHERE sjt_numero = 3;
@@ -147,8 +157,10 @@ FROM t_tag_tag
 WHERE sjt_numero = 1;
 
 -- 25
+SELECT @numero := MAX(tag_numero) FROM t_tag_tag;
+
 INSERT INTO t_tag_tag
-VALUES (7, "", "", "", "", 4);
+VALUES (@numero + 1, "", "", "", "", 4);
 
 -- 26
 DELETE
@@ -165,6 +177,11 @@ SET
 WHERE tag_numero = 7;
 
 -- 28
+DELETE FROM tj_tag_lien
+WHERE tag_numero IN (
+    SELECT tag_numero FROM t_tag_tag WHERE sjt_numero = 4
+);
+
 DELETE
 FROM t_tag_tag
 WHERE sjt_numero = 4;
