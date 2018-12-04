@@ -13,9 +13,9 @@
             if($_SESSION['prf_statut'] == 'M' || $_SESSION['prf_statut'] == 'G') {
 
                 if(isset($_POST['submit'])) {
-                    $tag_label = htmlspecialchars(trim($_POST['tag_label']));
-                    $tag_contenu = htmlspecialchars(trim($_POST['tag_contenu']));
-                    $tag_sujet = htmlspecialchars(trim($_POST['tag_sujet']));
+                    $tag_label = htmlspecialchars(trim(addslashes($_POST['tag_label'])));
+                    $tag_contenu = htmlspecialchars(trim(addslashes($_POST['tag_contenu'])));
+                    $tag_sujet = htmlspecialchars(trim(addslashes($_POST['tag_sujet'])));
                     
                     $upload_dir = $IMAGE_UPLOAD_DIR . basename($_FILES['tag_image']['name']);
 

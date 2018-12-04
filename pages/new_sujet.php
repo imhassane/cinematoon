@@ -11,7 +11,7 @@
             if($_SESSION['prf_statut'] == 'M' || $_SESSION['prf_statut'] == 'G') {
 
                 if(isset($_POST['submit'])) {
-                    $sjt_intitule = htmlspecialchars(trim($_POST['sjt_intitule']));
+                    $sjt_intitule = htmlspecialchars(trim(addslashes($_POST['sjt_intitule'])));
             
                     if(strlen($sjt_intitule) < 4) {
                         echo "<p style='color: red; padding: 1%; border: 1px solid red;'>L'intitulé doit contenir au moins 5 caractères</p>";

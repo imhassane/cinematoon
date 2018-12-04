@@ -11,10 +11,10 @@
     <?php
         // Si on soumet le formulaire.
         if(isset($_POST['submit'])) {
-            $pseudo = htmlspecialchars(trim($_POST['pseudo']));
-            $email = htmlspecialchars(trim($_POST['email']));
-            $password = htmlspecialchars(trim($_POST['password']));
-            $rptpassword = htmlspecialchars(trim($_POST['rptpassword']));
+            $pseudo = htmlspecialchars(trim(addslashes($_POST['pseudo'])));
+            $email = htmlspecialchars(trim(addslashes($_POST['email'])));
+            $password = htmlspecialchars(trim(addslashes($_POST['password'])));
+            $rptpassword = htmlspecialchars(trim(addslashes($_POST['rptpassword'])));
 
             if($password != $rptpassword || strlen($password) < 3) {
                 echo "  <p style='text-align: center; margin: 2%; padding: 2%; background-color: silver; color: red;'>

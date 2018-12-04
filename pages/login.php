@@ -11,8 +11,8 @@ header('Location: ../index.php');
     <?php
         // Si on soumet le formulaire.
         if(isset($_POST['submit'])) {
-            $pseudo = htmlspecialchars(trim($_POST['pseudo']));
-            $password = htmlspecialchars(trim($_POST['password']));
+            $pseudo = htmlspecialchars(trim(addslashes($_POST['pseudo'])));
+            $password = htmlspecialchars(trim(addslashes($_POST['password'])));
 
             if(strlen($pseudo) < 5 || strlen($password) < 5) {
                 echo "  <p style='text-align: center; margin: 2%; padding: 2%; background-color: silver; color: red;'>

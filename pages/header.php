@@ -2,7 +2,7 @@
 	session_start();
 	
 	include('../config.php');
-	$mysqli = newConnection('localhost', 'root', '', 'zfl2-zsowth000');
+	$mysqli = newConnection();
 	if($mysqli->connect_errno) {
 		echo "Une erreur s'est produite lors de la connexion";
 	}
