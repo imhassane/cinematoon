@@ -2,10 +2,11 @@
 <div id="body">
 	<div id="content">
 		<h1>Les tags</h1>
-		<h3><strong>This is just a place holder, so you can see what the site would look like.</strong></h3>
+		<h3><strong>Vous pouvez aussi utiliser les QR-CODE pour afficher un tag</strong></h3>
 		<p>
-			Proin vel velit vitae nisl mattis aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla scelerisque diam sit amet odio vestibulum porta. Ut aliquam accumsan augue, quis mollis purus pretium sit amet. Nullam dolor mi, tempus ullamcorper lobortis a, feugiat quis leo.
+			Les tags sont ajoutés par les membres de notre site et sont modérés par nos gestionnaires.
 		</p>
+		<h1>Liste des tags</h1>
 		<ul class="tags">
 			<?php
 				$sql = "SELECT * FROM t_tag_tag JOIN t_sujet_sjt USING (sjt_numero) WHERE tag_etat='A' ORDER BY tag_numero DESC";
@@ -21,6 +22,22 @@
 						<div>
 							<img src="<?=$tag['tag_image'];?>" alt="<?=$tag['tag_label'];?>" width="100" height="100" />
 						</div>
+						<?php
+							if(isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+						?>
+						<div>
+							<ul>
+								<li>
+									<a href="new_tag.php?action=update&tag_numero=<?=$tag['tag_numero'];?>">Modifier</a>
+								</li>
+								<li>
+									<a href="tag.php?action=delete&tag_numero=<?=$tag['tag_numero'];?>">Supprimer</a>
+								</li>
+							</ul>
+						</div>
+						<?php
+							}
+						?>
 					</div>
 					<?php
 					}

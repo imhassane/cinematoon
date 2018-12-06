@@ -64,19 +64,17 @@ header('Location: ../index.php');
 
     <form action="#" method="post">
 
-        <div>
+        <div class="form-fields">
             <label for="pseudo">Entrez votre pseudo</label>
             <input type="text" name="pseudo" id="pseudo" />
         </div>
 
-        <div>
+        <div class="form-fields">
             <label for="password">Entrez votre mot de passe</label>
             <input type="password" name="password" id="password" />
         </div>
 
-        <div>
-            <input type="submit" name="submit" value="Accéder à votre compte" />
-        </div>
+        <input type="submit" name="submit" value="Accéder à votre compte" />
 
     </form>
 

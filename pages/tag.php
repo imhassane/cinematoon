@@ -3,10 +3,29 @@
 
     if(!isset($_GET['tag_numero'])) {
         header('Location: tags.php');
+
+    } else if(isset($_GET['action'])) {
+        if($_GET['action']=="delete") {
+
+            $tag_numero = $_GET['tag_numero'];
+
+            $sql = "DELETE FROM tj_tag_lien WHERE tag_numero = $tag_numero;";
+            $sql .= "DELETE FROM t_tag_tag WHERE tag_numero = $tag_numero";
+
+            $req = $mysqli->multi_query($sql);
+            if($req) {
+                header('location: tags.php');
+            }
+        }
     } else {
         $sjt_numero = 0;
         $tag_numero = $_GET['tag_numero'];
-        $sql = "SELECT * FROM t_tag_tag JOIN t_sujet_sjt USING (sjt_numero) WHERE tag_numero=$tag_numero";
+        $sql = "SELECT *
+            FROM t_tag_tag
+            JOIN t_sujet_sjt USING (sjt_numero)
+            LEFT JOIN tj_tag_lien USING (tag_numero)
+            LEFT JOIN t_hyperlien_hln USING (hln_numero)
+            WHERE tag_numero = $tag_numero";
         $req = $mysqli->query($sql);
 ?>
 
@@ -30,7 +49,7 @@
                         <div>
                             <h2><?= $tag['tag_label'];?></h2>
                             <div class="img-container">
-                                <img src="<?=$tag['tag_image'];?>" alt="<?=$tag['tag_intitule'];?>" />
+                                <img src="<?=$tag['tag_image'];?>" alt="<?=$tag['tag_label'];?>" />
                             </div>
                             <p class="texte"><?=nl2br($tag['tag_contenu']);?></p>
                         </div>
@@ -58,6 +77,25 @@
                         ?>
                     </div>
                     <?php
+                        $sql = "SELECT * FROM t_tag_tag LEFT JOIN tj_tag_lien USING (tag_numero) LEFT JOIN t_hyperlien_hln USING (hln_numero) WHERE tag_numero='$tag_numero'";
+                        $req = $mysqli->query($sql);
+
+                        if($req) {
+                    ?>
+                    <div>
+                        <h3>Hyperliens associés au tag</h3>
+                        <?php
+                            while($hln = $req->fetch_assoc()) {
+                                ?>
+                                <div class="hyperlien">
+                                    <a href=""><?=$hln['hln_url']; ?></a>
+                                </div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                    <?php
+                        }
                 }
             }
 

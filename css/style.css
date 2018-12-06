@@ -617,6 +617,27 @@ p a:hover {
 	margin-top: 5%;
 }
 
+.menu {
+	width: 100%;
+}
+
+
+.menu ul {
+	display: flex;
+	list-style: none;
+}
+
+.menu ul li {
+	padding: 4px;
+	margin: 1px;
+	border: 1px solid green;
+}
+
+.menu ul li a {
+	text-decoration: none;
+	color: green;
+}
+
 #top-menu {
 	position: fixed;
 	top: 0%;
@@ -635,6 +656,21 @@ p a:hover {
 
 #top-menu ul li {
 	padding: 1%;
+	border: 1px solid green;
+	margin: 2px;
+}
+
+#top-menu ul li:hover {
+	background-color: green;
+}
+
+#top-menu ul li a {
+	text-decoration: none;
+	font-weight: bold;
+	color: green;
+}
+#top-menu ul li a:hover {
+	color: white;
 }
 
 #content {
@@ -644,12 +680,13 @@ p a:hover {
 form {
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 100%;
 }
 
 .form-fields {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .form-fields input{

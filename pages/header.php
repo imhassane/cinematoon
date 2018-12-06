@@ -28,6 +28,11 @@
 					<li>
 						<a href="new_tag.php">Publier un tag</a>
 					</li>
+					<?php if($_SESSION['is_admin']) { ?>
+					<li>
+						<a href="admin.php">Espace d'administration</a>
+					</li>
+					<?php } ?>
 				</ul>
 			</div>
 			<?php

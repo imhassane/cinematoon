@@ -2,9 +2,18 @@
 <div id="body">
 	<div id="content">
 		<h1>Liste des sujets</h1>
+		<?php
+			if(isset($_SESSION['is_admin']) && $_SESSION['is_admin']) {
+				?>
+				<div>
+				
+				</div>
+				<?php
+			}
+		?>
 		<h3><strong>Nous vous proposons nos sujets</strong></h3>
 		<p>
-			Etiam sed auctor turpis. Maecenas orci purus, ultrices eget rhoncus in, vestibulum a justo. Nunc in risus erat. Praesent sodales neque ut eros vulputate sagittis. Nullam risus mi, rhoncus in laoreet dapibus, ullamcorper eu nisi. Sed accumsan lacus sit amet nisl pulvinar bibendum. Phasellus eleifend fringilla gravida.
+			Les sujets sont publiés par les membres du site web cinematoon.
 		</p>
 		<h2>Liste des sujets</h2>
 		<ul style="list-style: none;">

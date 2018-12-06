@@ -21,17 +21,19 @@
 
                     if(strlen($tag_label) < 5 || strlen($tag_contenu) < 10) {
                         echo "<p style='color: red; padding: 1%; border: 1px solid red'>Les informations saisies ne sont pas correctes.</p>";
-                    } else {    
-                        if(move_uploaded_file($_FILES['tag_image']['tmp_name'], $upload_dir)) {
-                            $sql = "SELECT @id := MAX(tag_numero) FROM t_tag_tag;";
-                            $sql .= "INSERT INTO t_tag_tag VALUES (@id+1, '$tag_label', '$tag_contenu', '$upload_dir', 'A', '$tag_sujet')";
-                            $req = $mysqli->multi_query($sql);
+                    } else {
 
-                            if($req) {
-                                echo "<p style='color: green; padding: 1%; border: 1px solid green'>Le tag a été ajouté avec succès</p>";
-                            }else {
-                                echo $mysqli->error;
-                            }
+                        if(move_uploaded_file($_FILES['tag_image']['tmp_name'], $upload_dir)) {
+
+                                $sql = "SELECT @id := MAX(tag_numero) FROM t_tag_tag;";
+                                $sql .= "INSERT INTO t_tag_tag VALUES (@id+1, '$tag_label', '$tag_contenu', '$upload_dir', 'A', '$tag_sujet')";
+                                $req = $mysqli->multi_query($sql);
+
+                                if($req) {
+                                    echo "<p style='color: green; padding: 1%; border: 1px solid green'>Le tag a été ajouté avec succès</p>";
+                                }else {
+                                    echo $mysqli->error;
+                                }
                         }
                     }
                 }
@@ -52,7 +54,8 @@
             <div class="form-fields">
 
                 <label for="tag_contenu">Contenu du tag</label>
-                <textarea name="tag_contenu" id="tag_contenu" cols="30" rows="10"></textarea>
+                <textarea name="tag_contenu" id="tag_contenu" cols="30" rows="10">
+                </textarea>
 
             </div>
 
